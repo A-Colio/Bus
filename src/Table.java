@@ -1,13 +1,19 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Random;
 
 // 버스 시간표 만드는 클래스
 public class Table {
+    public static String[] terminals = {"서울", "부산", "경기", "경상", "강원", "전라"};
+    public static String[] weekStr = new String[7];
+
     // [요일][90개 버스 운행표]
-    public static Bus[][] createBusTable() {  // busAllTime[90]
+    public static Bus[][] createBusTable() {
         Random rand = new Random();
 
         String[] company = {"대진운수", "진리고속", "동아여객", "우정고속"};
-        String[] dest = {"서울", "부산", "경기", "경상", "강원", "전라"};
+        // String[] dest = {"서울", "부산", "경기", "경상", "강원", "전라"};
         String[] grades = {"일반", "우등", "프리미엄"};
         int[] maxSeats = {45, 30, 25};
         // 일주일 치의 시간표 생성
@@ -33,6 +39,34 @@ public class Table {
         return tempArr;
     }
 
-    ;
+    public static void showTerminals() {
+        int no = 1;
+        for (String des : terminals)
+            System.out.println(no++ + ". " + des);
+    }
 
+    public static void showTerminals(int destNum) {
+        int no = 1;
+        for (int i = 0; i < terminals.length; i++) {
+            if (i == (destNum - 1)) continue;
+            System.out.println(no++ + ". " + terminals[i]);
+        }
+
+    }
+
+    public static void setWeekStr() {
+        DateTimeFormatter mmdd = DateTimeFormatter.ofPattern("M'월' d'일'", Locale.KOREAN);
+        LocalDate date = LocalDate.now();
+
+        for (int i = 0; i < 7; i++) {
+            String tempDate = date.plusDays(i).format(mmdd);
+            weekStr[i] = tempDate;
+        }
+    }
+
+    public static void showWeekStr() {
+        for (int i = 0; i < 7; i++) {
+            System.out.println((i + 1) + ". " + weekStr[i]);
+        }
+    }
 }
