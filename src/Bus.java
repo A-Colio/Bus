@@ -59,4 +59,9 @@ public class Bus {
     public void setMaxSeats(int maxSeats) {
         this.maxSeats = maxSeats;
     }
+
+    public void reserve(int seats) {
+        this.remainSeats -= seats;
+        System.out.println("예약이 완료되었습니다. 남은 좌석 수: " + this.remainSeats);
+    }
 }

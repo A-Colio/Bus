@@ -12,20 +12,25 @@ public class Main {
 
         System.out.println("출발지의 번호를 입력해주세요.");
         Table.showTerminals();
+        System.out.print("→ ");
         int departNum = in.nextInt();
 
         System.out.println("\n출발일을 선택해주세요.");
         Table.showWeekStr();
-        int date = in.nextInt();
+        System.out.print("→ ");
+        int dateNum = in.nextInt();
 
         System.out.println("\n도착지의 번호를 입력해주세요.");
         Table.showTerminals(departNum);
+        System.out.print("→ ");
         int arrivalNum = in.nextInt();
 
-        myTrip.showBusTable(date - 1, departNum - 1, arrivalNum);
+        myTrip.showBusTable(dateNum - 1, departNum - 1, arrivalNum);
 
         System.out.println("\n예약할 버스를 선택해주세요.");
+        System.out.print("→ ");
         int resBus = in.nextInt();
-//        myTrip.addTrip();
+        myTrip.addTrip(departNum, arrivalNum, resBus);
+        myTrip.printMyTrip();
     }
 }
