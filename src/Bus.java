@@ -60,8 +60,14 @@ public class Bus {
         this.maxSeats = maxSeats;
     }
 
-    public void reserve(int seats) {
-        this.remainSeats -= seats;
-        System.out.println("예약이 완료되었습니다. 남은 좌석 수: " + this.remainSeats);
+    public boolean reserve(int seats) {
+        if (this.remainSeats < seats) {
+            System.out.println("예약이 불가능합니다. 남은 좌석 수: " + this.remainSeats + "\n");
+            return false;
+        } else {
+            this.remainSeats -= seats;
+            System.out.println("예약이 완료되었습니다. 남은 좌석 수: " + this.remainSeats + "\n");
+            return true;
+        }
     }
 }

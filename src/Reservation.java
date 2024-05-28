@@ -34,14 +34,22 @@ public class Reservation {
             System.out.println((i + 1) + ". " + busTable[departNum][(arrivalNum - 1) + i]);
     }
 
-    public void addTrip(int departNum, int arrivalNum, int resNum) {
+    public void addTrip(int departNum, int arrivalNum, int resNum, int resSeats) {
         // departNum, dateNum, arrivalNum을 이용하여 trip에 버스 정보 저장
-        this.trip[tripCnt++] = busTable[departNum - 1][arrivalNum - 1 + (resNum - 1)];
+//        this.trip[tripCnt++] = busTable[departNum - 1][arrivalNum - 1 + (resNum - 1)];
+        this.trip[tripCnt] = busTable[departNum - 1][arrivalNum - 1 + (resNum - 1)];
+        this.trip[tripCnt++].reserve(resSeats);
     }
 
     public void printMyTrip() {
         // trip에 저장된 버스 정보 출력
-        for (int i = 0; i < tripCnt; i++)
+        for (int i = 0; i < tripCnt; i++) {
+            System.out.println("나의 여정");
             System.out.println(trip[i]);
+        }
+    }
+
+    public Bus[][] getBusTable() {
+        return busTable;
     }
 }

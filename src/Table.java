@@ -13,7 +13,6 @@ public class Table {
         Random rand = new Random();
 
         String[] company = {"대진운수", "진리고속", "동아여객", "우정고속"};
-        // String[] dest = {"서울", "부산", "경기", "경상", "강원", "전라"};
         String[] grades = {"일반", "우등", "프리미엄"};
         int[] maxSeats = {45, 30, 25};
         // 일주일 치의 시간표 생성
