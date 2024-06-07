@@ -70,22 +70,38 @@ public class Main {
         myTrip.showBusTable(dateNum - 1, departNum - 1, arrivalNum - 1);
 
         // 예약할 버스 선택
-        resBus = selectOption(in, "예약할 버스의 번호를 선택해주세요.", new String[]{"1", "2", "3"}, 1, 3);
+        while (true) {
+            try {
+                System.out.println("예약할 버스의 번호를 선택해주세요.");
+                System.out.print("→ ");
+                resBus = in.nextInt();
+                if (resBus < 1 || resBus > 3)
+                    throw new InputMismatchException();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("잘못된 입력입니다. 다시 선택해주세요.");
+                in.nextLine();
+            }
+        }
         System.out.println();
 
         // 예약할 좌석 수 선택
         while (true) {
             try {
-                System.out.println("예약할 좌석 수를 입력해주세요.");
+                System.out.println("예약할 좌석 수를 입력해주세요 (0 은 취소).");
                 System.out.print("→ ");
                 resSeats = in.nextInt();
+                if (resSeats == 0) {
+                    System.out.println("예약이 취소되었습니다.");
+                    return;
+                }
                 int busIndex = (arrivalNum - 1) * 3 + (resBus - 1);
                 int remain = myTrip.getBusTable()[departNum - 1][busIndex].getRemainSeats();
                 if (resSeats < 1 || resSeats > remain)
                     throw new InputMismatchException();
                 break;
             } catch (InputMismatchException e) {
-                System.out.println("잘못된 입력입니다.\n");
+                System.out.println("잘못된 입력입니다. 다시 선택해주세요.");
                 in.nextLine();
             }
         }
@@ -125,7 +141,7 @@ public class Main {
                     throw new InputMismatchException();
                 break;
             } catch (InputMismatchException e) {
-                System.out.println("잘못된 입력입니다.\n");
+                System.out.println("잘못된 입력입니다. 다시 선택해주세요.");
                 in.nextLine();
             }
         }
@@ -150,7 +166,7 @@ public class Main {
                     throw new InputMismatchException();
                 break;
             } catch (InputMismatchException e) {
-                System.out.println("잘못된 입력입니다.\n");
+                System.out.println("잘못된 입력입니다. 다시 선택해주세요.");
                 in.nextLine();
             }
         }
@@ -172,7 +188,7 @@ public class Main {
                     throw new InputMismatchException();
                 break;
             } catch (InputMismatchException e) {
-                System.out.println("잘못된 입력입니다.\n");
+                System.out.println("잘못된 입력입니다. 다시 선택해주세요.");
                 in.nextLine();
             }
         }
